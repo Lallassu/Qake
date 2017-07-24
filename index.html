@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Qake - demo</title>
+    <script src="libs/three.min.js"></script>
+    <script src="libs/Stats.js"></script>
+    <script src="libs/jquery-1.11.1.min.js"></script>
+    <script src="libs/OrbitControls.js"></script>
+    <script src="libs/THREEx.WindowResize.js"></script>
+    <script src="libs/THREEx.KeyboardState.js"></script>
+     <style>
+html, body {
+    cusor: none;
+    background-color: #000000;
+    color: #ffffff;
+    font-family:Monospace;
+    font-size:13px;
+    text-align:center;
+    font-weight: bold;
+
+    background-color: #000000;
+    margin: 0 auto;
+    overflow: hidden; 
+    height: 100%;
+    width: 100%;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+    </style>
+  </head>
+  <body>
+<div style="position: absolute; z-index: 110;" id="blockstats"></div>
+<div style="position: absolute; z-index: 110; margin-top: 30px;" id="editor"></div>
+<div style="position: absolute; z-index: 110; margin-top: 70px;" id="editor2">
+    <button onclick="ToggleWireFrame();">Wireframe on/off</button>
+    <button onclick="Rebuild();">Rebuild All</button>
+    <button onclick="LockPointer();">Lock Mouse</button>
+</div>
+<div style="position: absolute; z-index: 110; margin-top: 90px;" id="phys">
+    </div>
+ <div style="position: relative; z-index: 1; " id="container"></div> 
+<div style="position: absolute; z-index: 100;" id="stats"></div>
+
+ <script src="js/vox.js"></script>
+ <script src="js/utils.js"></script>
+ <script src="js/player.js"></script>
+ <script src="js/world.js"></script>
+ <script src="js/proc.js"></script>
+ <script src="js/main.js"></script>
+ <script src="js/phys.js"></script>
+  </body>
+  <script>
+var game;
+    $(document).ready( function() {
+        game = new Game();
+        game.Init();
+        //$('body').css('cursor', 'none');
+    });
+
+    function LockPointer() {
+        var e = document.body;
+        //var e = document.getElementById('container');
+        e.requestPointerLock = e.requestPointerLock ||
+            e.mozRequestPointerLock ||
+           e.webkitRequestPointerLock;
+
+        e.requestPointerLock();
+    }
+
+    function ToggleWireFrame() {
+        if(game.world.wireframe == true) {
+            game.world.RebuildMaterial(false);
+        } else {
+            game.world.RebuildMaterial(true);
+        }
+        game.world.RebuildDirtyChunks(true);
+    }
+
+    function Rebuild() {
+        game.world.RebuildDirtyChunks(0);   
+    }
+
+    function HoverColor(color, index) {
+        $('#color').css('color', "rgb("+color+")");
+        $('#color').html("&block;("+index+")");
+        $('#color2').text(index);
+    }
+  </script>
+</html>

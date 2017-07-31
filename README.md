@@ -3,6 +3,8 @@ Play the game here: http://qake.se/demo
 
 Also on Chrome Experiments: https://www.chromeexperiments.com/experiment/qake
 
+Upcoming version preview can be played here: http://qake.se/demo2
+
 ## Description
 Qake is a voxel-engine written in Javascript with ThreeJS as graphic library.
 

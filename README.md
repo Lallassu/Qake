@@ -1,5 +1,5 @@
 # Qake
-Play the game here: http://qake.se/demo
+Play the game here: https://qake.se/demo
 
 Also on Chrome Experiments: https://www.chromeexperiments.com/experiment/qake
 
